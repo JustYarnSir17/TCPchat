@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\source\\repos\\TCP\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D50246BD-49EA-4C0C-A7E9-D43FF9A60971}|TCP\\TCP.vcxproj|C:\\Users\\Admin\\source\\repos\\TCP\\TCP\\server.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D50246BD-49EA-4C0C-A7E9-D43FF9A60971}|TCP\\TCP.vcxproj|solutionrelative:TCP\\server.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "server.cpp",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\TCP\\TCP\\server.cpp",
+              "RelativeDocumentMoniker": "TCP\\server.cpp",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\TCP\\TCP\\server.cpp",
+              "RelativeToolTip": "TCP\\server.cpp",
+              "ViewState": "AQIAAKgAAAAAAAAAAAAuwLMAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-22T09:23:32.083Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
