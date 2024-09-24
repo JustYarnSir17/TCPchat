@@ -15,6 +15,7 @@ using namespace std;
 //클라이언트와 메시지를 주고 받는 기능을 쓰레드에서 실행할 수 있게 함수로 분리
 void ClientHandler(SOCKET clientSocket) {
 	char Packet[PACKET_LENGTH] = {};//데이터 저장할 패킷 버퍼 초기화
+
 	while (true) {//무한 루프를 통해서 지속적으로 클라이언트 메시지를 주고 받음
 		//클라이언트로부터 메시지를 수신
 		int recvSize = recv(clientSocket, Packet, PACKET_LENGTH, 0);
@@ -39,13 +40,27 @@ void ClientHandler(SOCKET clientSocket) {
 		memset(Packet, 0, sizeof(Packet));
 
 
+
+	}
 		//클라이언트 소켓을 닫아서 연결을 종료한다.
 		closesocket(clientSocket);
 
-	}
-
 }
 
+
+bool chatClient(SOCKET hClientSocket,char *Packet) {
+	cout << "Message To Client : ";
+	cin.getline(Packet, PACKET_LENGTH);//사용자 입력을 받음
+
+	//"exit" 입력 시 서버에 메시지를 보내고 종료
+	if (strcmp(Packet, "exit") == 0) {
+		send(hClientSocket, Packet, strlen(Packet), 0);
+		return false;
+	}
+
+	send(hClientSocket, Packet, strlen(Packet), 0);//서버에 메시지를 전송
+	return true;
+}
 
 int main() {
 	/*
@@ -168,6 +183,8 @@ int main() {
 	* 클라이언트의 최종적인 연결 요청을 받아들이는 함수는 아래에서 사용될 accept 함수이다.
 	*/
 	listen(hListen, SOMAXCONN);
+
+	char Packet[PACKET_LENGTH] = {};
 	
 	//서버 시작 메시지 출력
 	cout << "서버가 시작되었습니다. 클라이언트를 기다리는 중..." << endl;
@@ -204,11 +221,22 @@ int main() {
 		cout << "클라이언트가 연결되었습니다." << endl;//클라이언트 연결 성공 메시지 출력
 
 		thread clientThread(ClientHandler, hClientSocket);//클라이언트마다 별도의 스레드를 생성하여 클라이언트와의 통신을 처리
+		/*
+		* thread 생성자는 새로운 스레드를 생성할 때 생성자에 첫 번째 인자로 실행할 함수, 두 번째 인자부터는 그 함수에 전달할 파라미터를 받는다.
+		* 즉, thread 객체는 새로운 스레드를 생성하고, 그 스레드가 ClientHandler 함수를 hClientSocket을 인자로 하여 실행하도록 설정한다.
+		* 새로운 스레드가 시작되면서 ClientHandler(hClientSocket)가 호출되고, 이 함수 내에서 클라이언트와의 통신을 처리하게 된다.
+		*/
+		
+
 
 		clientThread.detach();//스레드를 분리(detach)하여 독립적으로 동작하도록 함. 스레드가 끝나면 자동으로 자원 해제
+		//스레드가 독립적으로 실행되면서 메인 스레드는 다른 클라이언트를 처리할 수 있게 된다.
 
-
+		while (chatClient(hClientSocket, Packet));
+		
 	}
+
+
 
 	closesocket(hListen);//리스닝 소켓 종료 (더 이상 연락을 받지 않음)
 
