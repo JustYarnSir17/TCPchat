@@ -1,13 +1,51 @@
 #include <iostream>
 #include <WinSock2.h>
+#include <thread> // 멀티 쓰레드를 사용하기 위해 추가
+
 
 using namespace std;
 
 // 윈도우 소켓의 기능을 쓰기 위해 라이브러리를 추가한다.
 #pragma comment(lib, "ws2_32.lib")
 
-#define PORT 7890
-#define PACKET_LENGTH 1024
+#define PORT 7890	//사용할 포트 번호를 7890으로 설정
+#define PACKET_LENGTH 1024	//한 번에 주고 받을 패킷의 최대 길이를 1024 바이트로 설정
+
+//클라이언트 처리 함수(쓰레드에서 동작)
+//클라이언트와 메시지를 주고 받는 기능을 쓰레드에서 실행할 수 있게 함수로 분리
+void ClientHandler(SOCKET clientSocket) {
+	char Packet[PACKET_LENGTH] = {};//데이터 저장할 패킷 버퍼 초기화
+	while (true) {//무한 루프를 통해서 지속적으로 클라이언트 메시지를 주고 받음
+		//클라이언트로부터 메시지를 수신
+		int recvSize = recv(clientSocket, Packet, PACKET_LENGTH, 0);
+		if (recvSize == SOCKET_ERROR || recvSize == 0) {//수신 에러 또는 클라이언트가 연결 종료 시
+			cout << "클라이언트 연결 종료" << endl;
+			break;
+		}
+
+		Packet[recvSize] = '\0';//받은 메시지 끝에 null 문자를 추가해서 문자열을 마무리
+		cout << "Client : " << Packet << endl;//클라이언트로부터 받은 메시지를 콘솔에 출력
+
+		//클라이언트가 "exit"라는 메시지를 보내면 서버에서 연결을 종료한다.
+		if (strcmp(Packet, "exit") == 0) {
+			cout << "클라이언트가 종료 요청을 보냈습니다." << endl;
+			break;
+		}
+
+		//클라이언트에게 받은 메시지를 그대로 다시 전송 (에코)
+		send(clientSocket, Packet, strlen(Packet), 0);
+
+		//패킷 버퍼를 다음 데이터를 위해 깨끗하게 초기화
+		memset(Packet, 0, sizeof(Packet));
+
+
+		//클라이언트 소켓을 닫아서 연결을 종료한다.
+		closesocket(clientSocket);
+
+	}
+
+}
+
 
 int main() {
 	/*
@@ -131,70 +169,48 @@ int main() {
 	*/
 	listen(hListen, SOMAXCONN);
 	
-	/* accept 준비
-	* 클라이언트의 connect를 accept 하기 전에
-	* 미리 새롭게 생성될 소켓의 구조체 정보를 생성해둔다.
-	* 클라이언트와 연결이 성공되면 이 구조체의 정보를 이용해서 
-	* 클라이언트의 주소 정보를 알아낼 수 있다. 
-	*/
-	SOCKADDR_IN tClntAddr = {};
-	int iSize = sizeof(tListenAddr);
+	//서버 시작 메시지 출력
+	cout << "서버가 시작되었습니다. 클라이언트를 기다리는 중..." << endl;
 
-	/* accept 실행
-	* accept는 연결지향형 소켓에서 사용하는 함수
-	* (비연결지향형 UDP에서는 사용하지 않음)
-	* accept는 블로킹 방식으로 처리된다.
-	* 블로킹 방식이란 요청이 올 때까지 대기하는 것.
-	* (요청이 오기 전까지 이 함수에서 빠져 나올 수 없다.)
-	* 클라이언트와 연결이 되면 서로 통신할 새로운 소켓을 반환한다. 
-	* 이 소켓을 바탕으로 서로 통신을 할 수 있게 된다.
-	* 에러가 발생하면 -1 (SOCKET_ERROR)을 리턴하고
-	* 성공하면 0보다 큰 파일지정번호가 리턴된다.
-	*/
-	SOCKET hSocket = accept(hListen, (SOCKADDR*)&tClntAddr, &iSize);
+	while (true) {//클라이언트의 연결 요청을 계속해서 기다리는 루프
 
-	if (hSocket == SOCKET_ERROR)
-	{
-		/*
-		* 에러가 발생했다면 사용한 소켓을 닫아주고 바로 종료한다.
-		* 사용한 소켓의 리소스를 반환한다.
+		/* accept 준비
+		* 클라이언트의 connect를 accept 하기 전에
+		* 미리 새롭게 생성될 소켓의 구조체 정보를 생성해둔다.
+		* 클라이언트와 연결이 성공되면 이 구조체의 정보를 이용해서
+		* 클라이언트의 주소 정보를 알아낼 수 있다.
 		*/
-		closesocket(hListen);
-	
-		//윈도우 소켓 종료
-		WSACleanup();
+		SOCKADDR_IN tClntAddr = {}; //클라이언트 주소 정보를 담을 구조체
+		int iSize = sizeof(tClntAddr);//클라이언트 주소 정보 구조체의 크기
 
-		return 0;
+		/* accept 실행
+		* accept는 연결지향형 소켓에서 사용하는 함수
+		* (비연결지향형 UDP에서는 사용하지 않음)
+		* accept는 블로킹 방식으로 처리된다.
+		* 블로킹 방식이란 요청이 올 때까지 대기하는 것.
+		* (요청이 오기 전까지 이 함수에서 빠져 나올 수 없다.)
+		* 클라이언트와 연결이 되면 서로 통신할 새로운 소켓을 반환한다.
+		* 이 소켓을 바탕으로 서로 통신을 할 수 있게 된다.
+		* 에러가 발생하면 -1 (SOCKET_ERROR)을 리턴하고
+		* 성공하면 0보다 큰 파일지정번호가 리턴된다.
+		*/
+		SOCKET hClientSocket = accept(hListen, (SOCKADDR*)&tClntAddr, &iSize);//클라이언트 연결 요청을 수락하고, 연결된 클라이언트의 소켓을 반환한다.
+
+		if (hClientSocket == SOCKET_ERROR) {
+			cout << "클라이언트 연결 실패" << endl;
+			continue;
+		}
+
+		cout << "클라이언트가 연결되었습니다." << endl;//클라이언트 연결 성공 메시지 출력
+
+		thread clientThread(ClientHandler, hClientSocket);//클라이언트마다 별도의 스레드를 생성하여 클라이언트와의 통신을 처리
+
+		clientThread.detach();//스레드를 분리(detach)하여 독립적으로 동작하도록 함. 스레드가 끝나면 자동으로 자원 해제
+
+
 	}
 
-	/*접속 메시지를 보낸다.
-	* (캐릭터 배열로 구성함)
-	*/
-	char Packet[PACKET_LENGTH] = {};
-	strcpy_s(Packet, "접속 성공");
-
-	/* send 실행
-	* 지정된 소켓으로 패킷을 전송한다.
-	* send 또한 블로킹 방식으로 처리 되기 때문에
-	* 실행 결과가 결정되기 전까지 값을 리턴하지 않는다.
-	* 마지막 인자는 0으로 설정하면 일반적인 패킷 데이터를 전송할 수 있다.
-	*/
-	send(hSocket, Packet, strlen(Packet), 0);
-
-	//클라이언트로부터 받을 퍀시 메시지를 위해 깨끗하게 비워둔다.
-	memset(Packet, 0, sizeof(Packet));
-
-	/*recv
-	* 서버에서 응답받은 클라이언트로부터 패킷을 받는다.
-	* 이함수도 블로킹 방식으로 처리된다.
-	*/
-	recv(hSocket, Packet, PACKET_LENGTH, 0);
-
-	cout << "Client : " << Packet << endl;
-
-	//종료시 사용 끝난 소켓 리소스를 반환한다.
-	closesocket(hSocket);
-	closesocket(hListen);
+	closesocket(hListen);//리스닝 소켓 종료 (더 이상 연락을 받지 않음)
 
 	//윈도우 소켓을 종료한다.
 	WSACleanup();

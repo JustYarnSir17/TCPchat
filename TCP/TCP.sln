@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TCP", "TCP\TCP.vcxproj", "{D50246BD-49EA-4C0C-A7E9-D43FF9A60971}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TCP_cli", "..\TCP_cli\TCP_cli\TCP_cli.vcxproj", "{A106BC9F-DEBD-4D4B-AC59-D26D29FAB669}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{D50246BD-49EA-4C0C-A7E9-D43FF9A60971}.Release|x64.Build.0 = Release|x64
 		{D50246BD-49EA-4C0C-A7E9-D43FF9A60971}.Release|x86.ActiveCfg = Release|Win32
 		{D50246BD-49EA-4C0C-A7E9-D43FF9A60971}.Release|x86.Build.0 = Release|Win32
+		{A106BC9F-DEBD-4D4B-AC59-D26D29FAB669}.Debug|x64.ActiveCfg = Debug|x64
+		{A106BC9F-DEBD-4D4B-AC59-D26D29FAB669}.Debug|x64.Build.0 = Debug|x64
+		{A106BC9F-DEBD-4D4B-AC59-D26D29FAB669}.Debug|x86.ActiveCfg = Debug|Win32
+		{A106BC9F-DEBD-4D4B-AC59-D26D29FAB669}.Debug|x86.Build.0 = Debug|Win32
+		{A106BC9F-DEBD-4D4B-AC59-D26D29FAB669}.Release|x64.ActiveCfg = Release|x64
+		{A106BC9F-DEBD-4D4B-AC59-D26D29FAB669}.Release|x64.Build.0 = Release|x64
+		{A106BC9F-DEBD-4D4B-AC59-D26D29FAB669}.Release|x86.ActiveCfg = Release|Win32
+		{A106BC9F-DEBD-4D4B-AC59-D26D29FAB669}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

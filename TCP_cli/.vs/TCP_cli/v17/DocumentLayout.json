@@ -1,13 +1,16 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Admin\\source\\repos\\TCP_cli\\",
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\prj\\TCPchat\\TCP_cli\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A106BC9F-DEBD-4D4B-AC59-D26D29FAB669}|TCP_cli\\TCP_cli.vcxproj|C:\\Users\\Admin\\source\\repos\\TCP_cli\\TCP_cli\\client.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{D50246BD-49EA-4C0C-A7E9-D43FF9A60971}|..\\TCP\\TCP\\TCP.vcxproj|C:\\Users\\Admin\\Desktop\\prj\\TCPchat\\TCP\\TCP\\server.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A106BC9F-DEBD-4D4B-AC59-D26D29FAB669}|TCP_cli\\TCP_cli.vcxproj|C:\\Users\\Admin\\Desktop\\prj\\TCPchat\\TCP_cli\\TCP_cli\\client.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A106BC9F-DEBD-4D4B-AC59-D26D29FAB669}|TCP_cli\\TCP_cli.vcxproj|solutionrelative:TCP_cli\\client.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D50246BD-49EA-4C0C-A7E9-D43FF9A60971}|..\\TCP\\TCP\\TCP.vcxproj|C:\\Users\\Admin\\source\\repos\\TCP\\TCP\\server.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Admin\\source\\repos\\TCP\\TCP\\server.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,20 +20,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "client.cpp",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\TCP_cli\\TCP_cli\\client.cpp",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\prj\\TCPchat\\TCP_cli\\TCP_cli\\client.cpp",
               "RelativeDocumentMoniker": "TCP_cli\\client.cpp",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\TCP_cli\\TCP_cli\\client.cpp",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\prj\\TCPchat\\TCP_cli\\TCP_cli\\client.cpp",
               "RelativeToolTip": "TCP_cli\\client.cpp",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAACcAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-09-22T13:52:55.566Z",
               "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "server.cpp",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\prj\\TCPchat\\TCP\\TCP\\server.cpp",
+              "RelativeDocumentMoniker": "..\\TCP\\TCP\\server.cpp",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\prj\\TCPchat\\TCP\\TCP\\server.cpp",
+              "RelativeToolTip": "..\\TCP\\TCP\\server.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAM8AAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-24T07:50:12.832Z",
               "EditorCaption": ""
             },
             {
@@ -39,16 +55,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "server.cpp",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\TCP\\TCP\\server.cpp",
-              "RelativeDocumentMoniker": "..\\TCP\\TCP\\server.cpp",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\source\\repos\\TCP\\TCP\\server.cpp",
               "ToolTip": "C:\\Users\\Admin\\source\\repos\\TCP\\TCP\\server.cpp",
-              "RelativeToolTip": "..\\TCP\\TCP\\server.cpp",
+              "RelativeToolTip": "..\\..\\..\\..\\source\\repos\\TCP\\TCP\\server.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-22T13:56:28.145Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-22T13:56:28.145Z"
             }
           ]
         }
