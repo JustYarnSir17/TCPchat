@@ -1,0 +1,7 @@
+C:/Users/Admin/Desktop/prj/TCPchat/build/CMakeFiles/run_all.dir
+C:/Users/Admin/Desktop/prj/TCPchat/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Admin/Desktop/prj/TCPchat/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/Admin/Desktop/prj/TCPchat/build/TCP/CMakeFiles/server.dir
+C:/Users/Admin/Desktop/prj/TCPchat/build/TCP/CMakeFiles/ALL_BUILD.dir
+C:/Users/Admin/Desktop/prj/TCPchat/build/TCP_cli/CMakeFiles/client.dir
+C:/Users/Admin/Desktop/prj/TCPchat/build/TCP_cli/CMakeFiles/ALL_BUILD.dir

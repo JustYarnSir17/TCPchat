@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Admin\Desktop\prj\TCPchat\build\CMakeFiles\4651a03d8e63aa4851d114342e7b5f05\run_all.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Admin\Desktop\prj\TCPchat\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Admin\Desktop\prj\TCPchat\build\CMakeFiles\run_all" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{9E460A22-BDBB-3A1E-A7D5-D46041451C13}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

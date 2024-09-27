@@ -1,0 +1,22 @@
+^C:\USERS\ADMIN\DESKTOP\PRJ\TCPCHAT\BUILD\CMAKEFILES\4651A03D8E63AA4851D114342E7B5F05\RUN_ALL.RULE
+setlocal
+TCP\Debug\server.exe
+if %errorlevel% neq 0 goto :cmEnd
+TCP_cli\Debug\client.exe
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ADMIN\DESKTOP\PRJ\TCPCHAT\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Admin/Desktop/prj/TCPchat -BC:/Users/Admin/Desktop/prj/TCPchat/build --check-stamp-file C:/Users/Admin/Desktop/prj/TCPchat/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
