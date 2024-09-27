@@ -1,4 +1,4 @@
 ﻿  client.cpp
-C:\Users\Admin\Desktop\prj\TCPchat\TCP_cli\TCP_cli\client.cpp(109,32): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Admin\Desktop\prj\TCPchat\TCP_cli\TCP_cli\client.cpp(113,31): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Admin\Desktop\prj\TCPchat\TCP_cli\TCP_cli\client.cpp(108,32): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Admin\Desktop\prj\TCPchat\TCP_cli\TCP_cli\client.cpp(112,31): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   TCP_cli.vcxproj -> C:\Users\Admin\Desktop\prj\TCPchat\TCP_cli\x64\Debug\TCP_cli.exe

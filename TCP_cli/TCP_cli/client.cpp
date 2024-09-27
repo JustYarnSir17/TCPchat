@@ -101,7 +101,6 @@ int main() {
 	thread recvThread(ReceiveMessages, hSocket);
 	recvThread.detach();
 	while (true) {//메인 쓰레드에서는 사용자 입력을 받아서 서버로 전송하는 역할을 수행
-		cout << "Message To Server : ";
 		cin.getline(Packet, PACKET_LENGTH);//사용자 입력을 받음
 
 		//"exit" 입력 시 서버에 메시지를 보내고 종료

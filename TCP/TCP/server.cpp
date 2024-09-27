@@ -33,8 +33,6 @@ void ClientHandler(SOCKET clientSocket) {
 			break;
 		}
 
-		//클라이언트에게 받은 메시지를 그대로 다시 전송 (에코)
-		send(clientSocket, Packet, strlen(Packet), 0);
 
 		//패킷 버퍼를 다음 데이터를 위해 깨끗하게 초기화
 		memset(Packet, 0, sizeof(Packet));
@@ -49,7 +47,6 @@ void ClientHandler(SOCKET clientSocket) {
 
 
 bool chatClient(SOCKET hClientSocket,char *Packet) {
-	cout << "Message To Client : ";
 	cin.getline(Packet, PACKET_LENGTH);//사용자 입력을 받음
 
 	//"exit" 입력 시 서버에 메시지를 보내고 종료
@@ -219,7 +216,8 @@ int main() {
 		}
 
 		cout << "클라이언트가 연결되었습니다." << endl;//클라이언트 연결 성공 메시지 출력
-
+		strcpy_s(Packet, "서버와 연결되었습니다.");
+		send(hClientSocket, Packet, PACKET_LENGTH, 0);
 		thread clientThread(ClientHandler, hClientSocket);//클라이언트마다 별도의 스레드를 생성하여 클라이언트와의 통신을 처리
 		/*
 		* thread 생성자는 새로운 스레드를 생성할 때 생성자에 첫 번째 인자로 실행할 함수, 두 번째 인자부터는 그 함수에 전달할 파라미터를 받는다.
@@ -232,8 +230,8 @@ int main() {
 		clientThread.detach();//스레드를 분리(detach)하여 독립적으로 동작하도록 함. 스레드가 끝나면 자동으로 자원 해제
 		//스레드가 독립적으로 실행되면서 메인 스레드는 다른 클라이언트를 처리할 수 있게 된다.
 
-		while (chatClient(hClientSocket, Packet));
 		
+		while (chatClient(hClientSocket, Packet));
 	}
 
 
